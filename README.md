@@ -302,9 +302,9 @@ The following diagram shows the main components and data flow of the service:
 
 ```mermaid
 flowchart LR
-  Client[NPM package / Website] -->|POST /logs| API[Log Ingestion API (Express POST /logs)]
+  Client[NPM package / Website] -->|POST /logs| API[Log Ingestion API]
   API -->|write batch files| Raw[data/raw - raw batches]
-  Aggregator[Aggregator (interval or POST /aggregate)] -->|read & aggregate| Raw
+  Aggregator[Aggregator worker] -->|read & aggregate| Raw
   Aggregator -->|move processed| Processed[data/raw_processed - processed batches]
   Aggregator -->|write snapshots| Agg[data/aggregated - analytics snapshots]
   API -->|expose metrics| Metrics[GET /metrics - Prometheus counters]
