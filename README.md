@@ -302,12 +302,12 @@ The following diagram shows the main components and data flow of the service:
 
 ```mermaid
 flowchart LR
-  Client[NPM package / Website] -->|POST /logs| API[Log Ingestion API<br/>(Express / POST /logs)]
-  API -->|write batch files| Raw[data/raw<br/>Raw batches]
-  Aggregator[Aggregator<br/>(setInterval or POST /aggregate)] -->|read & aggregate| Raw
-  Aggregator -->|move processed| Processed[data/raw_processed<br/>Processed batches]
-  Aggregator -->|write snapshots| Agg[data/aggregated<br/>Analytics snapshots]
-  API -->|expose metrics| Metrics[GET /metrics<br/>Prometheus counters]
+  Client[NPM package / Website] -->|POST /logs| API[Log Ingestion API (Express POST /logs)]
+  API -->|write batch files| Raw[data/raw - raw batches]
+  Aggregator[Aggregator (interval or POST /aggregate)] -->|read & aggregate| Raw
+  Aggregator -->|move processed| Processed[data/raw_processed - processed batches]
+  Aggregator -->|write snapshots| Agg[data/aggregated - analytics snapshots]
+  API -->|expose metrics| Metrics[GET /metrics - Prometheus counters]
 ```
 
 - **Client**: customer website or NPM package sending batched logs.
